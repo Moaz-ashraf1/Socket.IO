@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Socket.IO chat</title>
+  </head>
+  <body>
+    <h1>Socket IO</h1>
+    <button onclick="send()">send</button>
+    <button onclick="join()">join</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      //   const socket = io();
+      //   socket.on("connect", () => {
+      //     console.log("Connect");
+      //   });
+
+      //   socket.on("serverEvent", () => {
+      //     console.log("event received from server");
+      //   });
+
+      //   function send() {
+      //     socket.emit("clientEvent", {
+      //       name: "moaz ashraf",
+      //       age: "22",
+      //     });
+      //   }
+      const socket = io();
+
+      socket.on("connect", () => {
+        console.log("Connect");
+      });
+
+      socket.on("newMsg", () => {
+        console.log("message received from server");
+      });
+      function send() {
+        socket.emit("sendMsg");
+      }
+      function join() {
+        socket.emit("joinRoom");
+      }
+    </script>
+  </body>
+</html>
